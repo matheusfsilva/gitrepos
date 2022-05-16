@@ -1,6 +1,9 @@
-# Getting Started with Create React App
+## Busca de repositorios
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+digite user do gitHub e busque os repositorios
+
+documentação datalhada em /Document
+figma (telas, components, prototipo) e PDF(telas)
 
 ## Available Scripts
 
