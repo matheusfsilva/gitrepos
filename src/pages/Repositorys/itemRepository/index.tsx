@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import { ListItem, ListItemIcon, ListItemText, Collapse, Paper } from '@mui/material';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import Button from '../../../components/Button/Button';
+import { Collapse, Paper } from '@mui/material';
 import ColRepository from './colRepository';
+import ListItemRepository from './listItemRepository';
 import { RepositoryModel } from '../../../providers/models/RepositoryModel';
 
 const paperSx = {
@@ -15,12 +12,6 @@ const paperSx = {
     justifyContent: 'center',
 }
 
-const itemSx = {
-    // marginBottom: '8px',
-    Height: '85px'
-}
-
-
 interface _ItemRepository {
     repository: RepositoryModel
 }
@@ -28,18 +19,17 @@ interface _ItemRepository {
 export default function ItemRepository({ repository }: _ItemRepository) {
     const [openInfo, setOpenIfon] = useState(false)
     return (
+        // paper externo
         <Paper elevation={0} sx={paperSx}>
-            <ListItem sx={itemSx}>
-                <ListItemIcon>
-                    <GitHubIcon className="storeIcon" />
-                </ListItemIcon>
-                <ListItemText primary={repository.name} secondary={null} />
-                <ListItemIcon>
-                    <Button onClick={() => setOpenIfon(!openInfo)}>Info{openInfo ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}</Button>
-                </ListItemIcon>
-            </ListItem>
+            {/* componet de conteudo do paper */}
+            <ListItemRepository
+                openInfo={openInfo}
+                name={repository.name}
+                setOpenInfo={setOpenIfon}
+            />
+            {/* Collapse abre clicando no botão info */}
             <Collapse in={openInfo} unmountOnExit>
-                <ColRepository />
+                <ColRepository repository={repository} />
             </Collapse>
         </Paper>
 

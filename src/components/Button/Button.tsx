@@ -1,11 +1,14 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/react-in-jsx-scope */
 import { styled } from '@mui/material/styles';
 import ButtonMaterial, { ButtonProps } from '@mui/material/Button';
 import { grey } from '@mui/material/colors';
 
-
-export default function Button(props: ButtonProps) {
+interface _Button extends ButtonProps {
+  target?: string
+}
+export default function Button(props: _Button) {
 
   const ColorButton = styled(ButtonMaterial)<ButtonProps>(({ theme }) => ({
     color: theme.palette.getContrastText(grey[300]),
