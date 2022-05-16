@@ -16,6 +16,7 @@ export default function RepositorysPage() {
     const [repositorys, setRepositorys] = useState<RepositoryModel[]>([]);
     const [load, setLoad] = useState(false)
 
+    // get dos repositorios Chamada
     async function effectgetRepository() {
         const response = await getRepository(user.login);
         console.log(response)
@@ -23,6 +24,8 @@ export default function RepositorysPage() {
             setRepositorys(response.data)
         }
     }
+
+    // Checagem se existe usuario no context
     function checkUser() {
         if (!user.login) {
             navigate('/')
@@ -42,12 +45,15 @@ export default function RepositorysPage() {
     return (
         // Box geral
         <Box>
+            {/* Loading */}
             <LoadingFull open={load} />
             <Header />
 
             <Box className="body--repostorysPage">
                 <BackButton />
+                {/* Container da lista */}
                 <Container>
+                    {/* Lista chamando itens */}
                     <List>
                         {
                             repositorys.map((e: RepositoryModel) => (
