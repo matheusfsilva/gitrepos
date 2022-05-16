@@ -1,26 +1,38 @@
-import React, { useEffect } from 'react';
-import { Box, Container } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Box, Container, List } from '@mui/material';
 import Header from '../../components/header';
+import ItemRepository from './itemRepository';
 import { getRepository } from '../../services/usersAPI';
 import { useContextProvider } from '../../providers/contextProvider';
+import { RepositoryModel } from '../../providers/models/RepositoryModel';
 import './styles.scss'
 
 export default function RepositorysPage() {
     const { user } = useContextProvider();
+    const [repositorys, setRepositorys] = useState<RepositoryModel[]>([]);
 
     useEffect(() => {
         async function get() {
             const response = await getRepository(user.login);
-            console.log(response)
+            if (response.status === 200) {
+                setRepositorys(response.data)
+            }
         } get()
     }, [])
+
     return (
         // Box geral
         <Box>
             <Header />
             <Box className="body--repostorysPage">
                 <Container>
-                    <div>teste</div>
+                    <List>
+                        {
+                            repositorys.map((e: RepositoryModel) => (
+                                <ItemRepository repository={e} />
+                            ))
+                        }
+                    </List>
                 </Container>
             </Box>
         </Box>

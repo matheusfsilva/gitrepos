@@ -12,7 +12,7 @@ export function AppRoutes() {
         <Router>
             <Routes>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/Repositorys" element={<RepositorysPage />} />
+                <Route path="/repositorys" element={<RepositorysPage />} />
             </Routes>
         </Router>
     )

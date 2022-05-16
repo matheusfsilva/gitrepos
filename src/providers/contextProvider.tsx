@@ -1,7 +1,7 @@
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React, { useState, createContext, useContext, useMemo } from 'react';
-import { UserModel } from './models';
+import { UserModel } from './models/UserModel';
 
 type ContextType = {
     user: UserModel,
